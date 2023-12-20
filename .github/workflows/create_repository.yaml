@@ -1,0 +1,242 @@
+name: create-github-repository-using-github-workflow
+on:
+  workflow_dispatch:
+    inputs:
+      organization:
+        type: string
+        default: 'devwithkrishna'
+        description: 'The GitHub organization where the repository will be created.'
+        required: true
+      repository_name:
+        type: string
+        default: ''
+        description: 'Enter the repository name'
+        required: true
+      repository_description:
+        type: string
+        required: false
+        description: 'A short description of the repository.'
+      private:
+        type: boolean
+        default: false
+        description: 'Whether the repository is private.'
+      visibility:
+        type: choice
+        options:
+          - public
+          - private
+        required: true
+      has_issues:
+        type: boolean
+        description: 'Either true to enable issues for this repository or false to disable them.'
+        default: true
+      has_projects:
+        type: boolean
+        default: true
+        description: 'Either true to enable projects for this repository or false to disable them'
+      has_wiki:
+        type: boolean
+        default: true
+        description: 'Either true to enable the wiki for this repository or false to disable it.'
+      gitignore_template:
+        type: choice
+        options:
+          - AL
+          - Actionscript
+          - Ada
+          - Agda
+          - Android
+          - AppEngine
+          - AppceleratorTitanium
+          - ArchLinuxPackages
+          - Autotools
+          - C++
+          - C
+          - CFWheels
+          - CMake
+          - CONTRIBUTING.md
+          - CUDA
+          - CakePHP
+          - ChefCookbook
+          - Clojure
+          - CodeIgniter
+          - CommonLisp
+          - Composer
+          - Concrete5
+          - Coq
+          - CraftCMS
+          - D
+          -  DM
+          - Dart
+          - Delphi
+          - Drupal
+          - EPiServer
+          - Eagle
+          - Elisp
+          - Elixir
+          - Elm
+          - Erlang
+          - ExpressionEngine
+          - ExtJs
+          - Fancy
+          - Finale
+          - FlaxEngine
+          - ForceDotCom
+          - Fortran
+          - FuelPHP
+          - GWT
+          - Gcov
+          - GitBook
+          - Go
+          - Godot
+          - Gradle
+          - Grails
+          - Haskell
+          - IGORPro
+          - Idris
+          - JBoss
+          - JENKINS_HOME
+          - Java
+          - Jekyll
+          - Joomla
+          - Julia
+          - KiCad
+          - Kohana
+          - Kotlin
+          - LabVIEW
+          - Laravel
+          - Leiningen
+          - LemonStand
+          - Lilypond
+          - Lithium
+          - Lua
+          - Magento
+          - Maven
+          - Mercury
+          - MetaProgrammingSystem
+          - Nanoc
+          - Nim
+          - Node
+          - OCaml
+          - Objective-C
+          - Opa
+          - OpenCart
+          - OracleForms
+          - Packer
+          - Perl
+          - Phalcon
+          - PlayFramework
+          - Plone
+          - Prestashop
+          - Processing
+          - PureScript
+          - Python
+          - Qooxdoo
+          - Qt
+          - R
+          - ROS
+          - Racket
+          - Rails
+          - Raku
+          - RhodesRhomobile
+          - Ruby
+          - Rust
+          - SCons
+          - Sass
+          - Scala
+          - Scheme
+          - Scrivener
+          - Sdcc
+          - SeamGen
+          - SketchUp
+          - Smalltalk
+          - Stella
+          - SugarCRM
+          - Swift
+          - Symfony
+          - SymphonyCMS
+          - TeX
+          - Terraform
+          - Textpattern
+          - TurboGears2
+          - TwinCAT3
+          - Typo3
+          - Unity
+          - UnrealEngine
+          - WordPress
+          - Xojo
+          - Yeoman
+          - Yii
+          - ZendFramework
+          - Zephir
+        required: false
+        description: 'Desired language or platform .gitignore template to apply. Use the name of the template'
+      license_template:
+        required: false
+        description: ''
+        type: choice
+        options:
+          - Academic Free License v3.0	
+          - Apache license 2.0	
+          - Artistic license 2.0	
+          - Boost Software License 1.0
+          - BSD 2-clause "Simplified" license	
+          - BSD 3-clause "New" or "Revised" license	
+          - BSD 3-clause Clear license	
+          - BSD 4-clause "Original" or "Old" license	
+          - BSD Zero-Clause license	
+          - Creative Commons license family	CC
+          - Creative Commons Zero v1.0 Universal	
+          - Creative Commons Attribution 4.0	
+          - Creative Commons Attribution ShareAlike 4.0	
+          - Do What The F*ck You Want To Public License
+          - Educational Community License v2.0	
+          - Eclipse Public License 1.0	
+          - Eclipse Public License 2.0	
+          - European Union Public License 1.1	
+          - GNU Affero General Public License v3.0	
+          - GNU General Public License family	
+          - GNU General Public License v2.0	
+          - GNU General Public License v3.0	
+          - GNU Lesser General Public License family	
+          - GNU Lesser General Public License v2.1	
+          - GNU Lesser General Public License v3.0	
+          - ISC	
+          - LaTeX Project Public License v1.3c
+          - Microsoft Public License	
+          - MIT	
+          - Mozilla Public License 2.0	
+          - Open Software License 3.0	
+          - PostgreSQL License	
+          - SIL Open Font License 1.1	
+          - University of Illinois/NCSA Open Source License	
+          - The Unlicense	
+          - zLib License	
+env:
+  ORGANIZATION: ${{ github.event.inputs.organization }}
+  REPOSITORY_NAME: ${{ github.event.inputs.repository_name }}
+  REPOSITORY_DESCRIPTION: ${{ github.event.inputs.repository_description }}
+  PRIVATE: ${{ github.event.inputs.private }}
+  VISIBILITY: ${{ github.event.inputs.visibility }}
+  HAS_ISSUES: ${{ github.event.inputs.has_issues }}
+  HAS_PROJECTS: ${{ github.event.inputs.has_projects }}
+  HAS_WIKI: ${{ github.event.inputs.has_wiki }}
+  GITIGNORE_TEMPLATE: ${{ github.event.inputs.gitignore_template }}
+  LICENSE_TEMPLATE: ${{ github.event.inputs.license_template }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token provided by secrets.GITHUB_TOKEN
+         
+jobs:
+  github-repository-creation-using-github-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Listing the files
+        run: ls -la
+      - name: Execute the program
+        run: |
+          bash create_repository_in_github.sh 
+
+
+
+      
