@@ -223,7 +223,7 @@ env:
   HAS_WIKI: ${{ github.event.inputs.has_wiki }}
   GITIGNORE_TEMPLATE: ${{ github.event.inputs.gitignore_template }}
   LICENSE_TEMPLATE: ${{ github.event.inputs.license_template }}
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token provided by secrets.GITHUB_TOKEN
+  GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }} # GitHub token provided by secrets.GITHUB_TOKEN
          
 jobs:
   github-repository-creation-using-github-workflow:
