@@ -223,17 +223,19 @@ env:
   HAS_WIKI: ${{ github.event.inputs.has_wiki }}
   GITIGNORE_TEMPLATE: ${{ github.event.inputs.gitignore_template }}
   LICENSE_TEMPLATE: ${{ github.event.inputs.license_template }}
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token provided by secrets.GITHUB_TOKEN
+  
          
 jobs:
   github-repository-creation-using-github-workflow:
     runs-on: ubuntu-latest
-    steps:
+    steps:           
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Listing the files
         run: ls -la
       - name: Execute the program
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bash create_repository_in_github.sh ${{ inputs.organization }} ${{ inputs.repository_name }} ${{ inputs.repository_description }} ${{ inputs.private }} ${{ inputs.visibility }} ${{  inputs.has_issues}} ${{ inputs.has_projects }} ${{  inputs.has_wiki}} ${{  inputs.gitignore_template}} ${{  inputs.license_template}}
 
