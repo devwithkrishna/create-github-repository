@@ -15,7 +15,7 @@ on:
       repository_description:
         type: string
         required: true
-        description: 'A short description of the repository.'
+        description: 'A short description of the repository.if more than a word enclose in quotes'
       private:
         type: boolean
         default: false
