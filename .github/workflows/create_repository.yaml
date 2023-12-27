@@ -224,6 +224,8 @@ env:
   GITIGNORE_TEMPLATE: ${{ github.event.inputs.gitignore_template }}
   LICENSE_TEMPLATE: ${{ github.event.inputs.license_template }}
   
+# Elevating Github token permissions to write all to create repo
+  permissions: write-all  
          
 jobs:
   github-repository-creation-using-github-workflow:
