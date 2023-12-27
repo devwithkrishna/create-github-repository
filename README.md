@@ -25,5 +25,5 @@ Choose an open source license template that best suits your needs, and then use 
 ```
 Desired language or platform .gitignore template to apply. Use the name of the template without the extension. For example, "Python".
 ```
-[gitignore-template] (https://github.com/github/gitignore)
+[gitignore-template](https://github.com/github/gitignore)
 
