@@ -14,7 +14,7 @@ on:
         required: true
       repository_description:
         type: string
-        required: false
+        required: true
         description: 'A short description of the repository.'
       private:
         type: boolean
@@ -173,7 +173,7 @@ on:
         description: 'Desired language or platform .gitignore template to apply. Use the name of the template'
       license_template:
         required: false
-        description: ''
+        description: 'Choose license template'
         type: choice
         options:
           - AFL-3.0
@@ -185,7 +185,6 @@ on:
           - BSD-3-Clause-Clear
           - BSD-4-Clause
           - 0BSD
-          - CC
           - CC0-1.0
           - CC-BY-4.0
           - CC-BY-SA-4.0
@@ -195,7 +194,6 @@ on:
           - EPL-2.0
           - EUPL-1.1
           - AGPL-3.0
-          - GPL
           - GPL-2.0
           - GPL-3.0
           - LGPL
@@ -224,8 +222,6 @@ env:
   GITIGNORE_TEMPLATE: ${{ github.event.inputs.gitignore_template }}
   LICENSE_TEMPLATE: ${{ github.event.inputs.license_template }}
 
-# Elevating Github token permissions to write all to create repo
-# permissions: write-all  
          
 jobs:
   github-repository-creation-using-github-workflow:
