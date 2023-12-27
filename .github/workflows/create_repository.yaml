@@ -222,7 +222,7 @@ env:
   GITIGNORE_TEMPLATE: ${{ github.event.inputs.gitignore_template }}
   LICENSE_TEMPLATE: ${{ github.event.inputs.license_template }}
 
-         
+permissions: write-all         
 jobs:
   github-repository-creation-using-github-workflow:
     runs-on: ubuntu-latest
@@ -233,7 +233,7 @@ jobs:
         run: ls -la
       - name: Execute the program
         env:
-          GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bash create_repository_in_github.sh ${{ inputs.organization }} ${{ inputs.repository_name }} ${{ inputs.repository_description }} ${{ inputs.private }} ${{ inputs.visibility }} ${{  inputs.has_issues}} ${{ inputs.has_projects }} ${{  inputs.has_wiki}} ${{  inputs.gitignore_template}} ${{  inputs.license_template}}
 
