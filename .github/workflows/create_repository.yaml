@@ -222,7 +222,7 @@ env:
   GITIGNORE_TEMPLATE: ${{ github.event.inputs.gitignore_template }}
   LICENSE_TEMPLATE: ${{ github.event.inputs.license_template }}
 
-run-name: {{ github.actor }} creating ${{  inputs.repository_name }}        
+run-name: ${{ github.actor }} creating ${{  inputs.repository_name }}        
 jobs:
   github-repository-creation-using-github-workflow:
     runs-on: ubuntu-latest
