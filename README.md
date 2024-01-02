@@ -27,3 +27,4 @@ Desired language or platform .gitignore template to apply. Use the name of the t
 ```
 [gitignore-template](https://github.com/github/gitignore)
 
+**if gitignore template and license templates are set as " " then they will not be addded to payload.** 

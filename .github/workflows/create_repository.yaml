@@ -41,6 +41,7 @@ on:
       gitignore_template:
         type: choice
         options:
+          - " "
           - AL
           - Actionscript
           - Ada
@@ -66,7 +67,7 @@ on:
           - Coq
           - CraftCMS
           - D
-          -  DM
+          - DM
           - Dart
           - Delphi
           - Drupal
@@ -171,11 +172,17 @@ on:
           - Zephir
         required: false
         description: 'Desired language or platform .gitignore template to apply. Use the name of the template'
+      auto_init:
+        required: false
+        description: 'Pass true to create an initial commit with empty README. Default: false'
+        type: boolean      
       license_template:
         required: false
         description: 'Choose license template'
         type: choice
         options:
+          - MIT
+          - " "
           - AFL-3.0
           - Apache-2.0
           - Artistic-2.0
@@ -202,7 +209,6 @@ on:
           - ISC
           - LPPL-1.3c
           - MS-PL
-          - MIT
           - MPL-2.0
           - OSL-3.0
           - PostgreSQL
