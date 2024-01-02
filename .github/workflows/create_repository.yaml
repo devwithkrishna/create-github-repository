@@ -2,11 +2,7 @@ name: create-github-repository-using-github-workflow
 on:
   workflow_dispatch:
     inputs:
-      organization:
-        type: string
-        default: 'devwithkrishna'
-        description: 'The GitHub organization where the repository will be created.'
-        required: true
+    # hard coded the organization name in the bash script in this case as maximum number of inouts is reached.
       repository_name:
         type: string
         default: ''
@@ -241,7 +237,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
         run: |
-          bash create_repository_in_github.sh ${{ inputs.organization }} ${{ inputs.repository_name }} ${{ inputs.repository_description }} ${{ inputs.private }} ${{ inputs.visibility }} ${{  inputs.has_issues}} ${{ inputs.has_projects }} ${{  inputs.has_wiki}} ${{  inputs.gitignore_template}} ${{  inputs.license_template}}
+          bash create_repository_in_github.sh ${{ inputs.repository_name }} ${{ inputs.repository_description }} ${{ inputs.private }} ${{ inputs.visibility }} ${{  inputs.has_issues}} ${{ inputs.has_projects }} ${{  inputs.has_wiki}} ${{  inputs.gitignore_template}} ${{  inputs.license_template}} ${{ inputs.auto_init}}
+
 
 
 

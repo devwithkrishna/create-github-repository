@@ -1,16 +1,18 @@
 #!/bin/bash
+# maximum of 10 inputs can be set for a workflow_despatch event. so hardcoding the organization here
 
 # GH_TOKEN --> will be passed from the workflow as an env variable
-ORGANIZATION=$1
-REPOSITORY_NAME=$2
-REPOSITORY_DESCRIPTION=$3
-PRIVATE=$4
-VISIBILITY=$5
-HAS_ISSUES=$6
-HAS_PROJECTS=$7
-HAS_WIKI=$8
-GITIGNORE_TEMPLATE=$9
-LICENSE_TEMPLATE=${10}
+ORGANIZATION="devwithkrishna"
+REPOSITORY_NAME=$1
+REPOSITORY_DESCRIPTION=$2
+PRIVATE=$3
+VISIBILITY=$4
+HAS_ISSUES=$5
+HAS_PROJECTS=$6
+HAS_WIKI=$7
+GITIGNORE_TEMPLATE=$8
+LICENSE_TEMPLATE=$9
+AUTO_INIT_README=${10}
 
 # Create the base payload without gitignore_template and license template
 payload="{\"name\":\"$REPOSITORY_NAME\",\"description\":\"$REPOSITORY_DESCRIPTION\",\"homepage\":\"https://github.com/$ORGANIZATION/$REPOSITORY_NAME\",\"private\":$PRIVATE,\"has_issues\":$HAS_ISSUES,\"visibility\":\"$VISIBILITY\",\"has_projects\":$HAS_PROJECTS,\"has_wiki\":$HAS_WIKI"
