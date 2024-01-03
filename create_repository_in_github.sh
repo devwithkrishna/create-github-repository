@@ -10,12 +10,13 @@ VISIBILITY=$4
 HAS_ISSUES=$5
 HAS_PROJECTS=$6
 HAS_WIKI=$7
-GITIGNORE_TEMPLATE=$8
-LICENSE_TEMPLATE=$9
-AUTO_INIT_README=${10}
+AUTO_INIT_README=$8
+GITIGNORE_TEMPLATE=$9
+LICENSE_TEMPLATE=${10}
+
 
 # Create the base payload without gitignore_template and license template
-payload="{\"name\":\"$REPOSITORY_NAME\",\"description\":\"$REPOSITORY_DESCRIPTION\",\"homepage\":\"https://github.com/$ORGANIZATION/$REPOSITORY_NAME\",\"private\":$PRIVATE,\"has_issues\":$HAS_ISSUES,\"visibility\":\"$VISIBILITY\",\"has_projects\":$HAS_PROJECTS,\"has_wiki\":$HAS_WIKI"
+payload="{\"name\":\"$REPOSITORY_NAME\",\"description\":\"$REPOSITORY_DESCRIPTION\",\"homepage\":\"https://github.com/$ORGANIZATION/$REPOSITORY_NAME\",\"private\":$PRIVATE,\"has_issues\":$HAS_ISSUES,\"visibility\":\"$VISIBILITY\",\"has_projects\":$HAS_PROJECTS,\"has_wiki\":$HAS_WIKI,\"auto_init\":$AUTO_INIT_README"
 
 # Check if gitignore template is provided, and if so, append it to the payload
 if [ -n "$GITIGNORE_TEMPLATE" ] && [ "$GITIGNORE_TEMPLATE" != " " ]; then
