@@ -18,17 +18,26 @@ LICENSE_TEMPLATE=${10}
 # Create the base payload without gitignore_template and license template
 payload="{\"name\":\"$REPOSITORY_NAME\",\"description\":\"$REPOSITORY_DESCRIPTION\",\"homepage\":\"https://github.com/$ORGANIZATION/$REPOSITORY_NAME\",\"private\":$PRIVATE,\"has_issues\":$HAS_ISSUES,\"visibility\":\"$VISIBILITY\",\"has_projects\":$HAS_PROJECTS,\"has_wiki\":$HAS_WIKI,\"auto_init\":$AUTO_INIT_README"
 
-# Check if gitignore template is provided, and if so, append it to the payload
-if [ -n "$GITIGNORE_TEMPLATE" ] && [ "$GITIGNORE_TEMPLATE" != " " ]; then
-  payload="$payload,\"gitignore_template\":\"$GITIGNORE_TEMPLATE\""
-fi
 
-# Check if license template is provided, and if so, append it to the payload
-if [ -n "$LICENSE_TEMPLATE" ] && [ "$LICENSE_TEMPLATE" != " " ]; then
-  payload="$payload,\"license_template\":\"$LICENSE_TEMPLATE\""
-fi
+# Function to add template field to the payload
+addTemplateField() {
+  local templateVar=$1
+  local templateName=$2
+  if [ -n "$templateVar" ] && [ "$templateVar" != " " ]; then
+    payload="$payload,\"$templateName\":\"$templateVar\""
+  fi
+}
 
-# Close the payload
+# Create the base payload without gitignore_template and license template
+payload="{\"name\":\"$REPOSITORY_NAME\",\"description\":\"$REPOSITORY_DESCRIPTION\",\"homepage\":\"https://github.com/$ORGANIZATION/$REPOSITORY_NAME\",\"private\":$PRIVATE,\"has_issues\":$HAS_ISSUES,\"visibility\":\"$VISIBILITY\",\"has_projects\":$HAS_PROJECTS,\"has_wiki\":$HAS_WIKI"
+
+# Add gitignore_template to the payload if it is not empty and not equal to a single space
+addTemplateField "$GITIGNORE_TEMPLATE" "gitignore_template"
+
+# Add license_template to the payload if it is not empty and not equal to a single space
+addTemplateField "$LICENSE_TEMPLATE" "license_template"
+
+# Complete the payload
 payload="$payload}"
 
 # Send the request to create the repository
