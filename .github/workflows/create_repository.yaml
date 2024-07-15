@@ -41,6 +41,7 @@ on:
       gitignore_template:
         type: choice
         options:
+          - None
           - AL
           - Actionscript
           - Ada
@@ -176,6 +177,7 @@ on:
         description: 'Choose license template'
         type: choice
         options:
+          - None
           - AFL-3.0
           - Apache-2.0
           - Artistic-2.0

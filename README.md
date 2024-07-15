@@ -1,6 +1,8 @@
 # create-github-repository
 create-github-repository using automation
 
+[![create-github-repository-using-github-workflow](https://github.com/devwithkrishna/create-github-repository/actions/workflows/create_repository.yaml/badge.svg)](https://github.com/devwithkrishna/create-github-repository/actions/workflows/create_repository.yaml)
+
 * This is using a github workflow to create a repositiry in a organization
 
 * The credential used is ``` PERSONAL ACCESS TOKEN ``` 
